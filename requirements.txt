@@ -1,0 +1,14 @@
+# Minimum versions only -- deliberately NOT pinned.
+#
+# This project is small and has no version-sensitive dependencies. Exact pins
+# would force downgrades of numpy/pandas/matplotlib in any environment shared
+# with other work (PyTorch, scipy, stable-baselines3, ultralytics), which is a
+# real hazard and buys nothing here.
+#
+# Note: numpy 2.4.0 was YANKED from PyPI for a backward-compatibility bug --
+# the upper bound below keeps pip away from it.
+
+numpy>=1.24,<2.4
+pandas>=2.0
+openpyxl>=3.1
+matplotlib>=3.7

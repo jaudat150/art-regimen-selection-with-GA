@@ -1,0 +1,20 @@
+__pycache__/
+*.py[cod]
+.Python
+venv/
+env/
+.venv/
+
+# generated at runtime -- reproduce with verify.py
+reports/regimens/
+reports/viz/
+reports/*.csv
+paper/figures/*.png
+paper/figures/*.pdf
+data/AllPatients_v2.xlsx
+data/drugs_sourced.xlsx
+
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

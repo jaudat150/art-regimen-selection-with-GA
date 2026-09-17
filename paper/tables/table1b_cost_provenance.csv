@@ -1,0 +1,21 @@
+Drug,USD_per_person_year,USD_per_month,Source,Note
+3TC,10.0,0.83,GF2023,ALLOCATED from TLD FDC ceiling <$45 PPPY; not an independent per-drug price
+ABC,123.0,10.25,HILL2016,"global lowest, 2016"
+ATV/r,219.0,18.25,HILL2016,"global lowest, 2016"
+AZT,46.0,3.83,HILL2016,listed as AZT/3TC combination; overestimates AZT alone
+BIC,780.0,65.0,ESTIMATE,no LMIC generic price located; originator-tier placeholder
+DOR,240.0,20.0,ESTIMATE,no LMIC generic price located; originator-tier placeholder
+DRV/r,210.0,17.5,DEVEX2021,"PEPFAR/Global Fund pricing agreement, 2021"
+DTG,20.0,1.67,GF2023,ALLOCATED from TLD FDC ceiling <$45 PPPY; not an independent per-drug price
+EFV,38.0,3.17,HILL2016,"global lowest, 2016"
+EVG,480.0,40.0,ESTIMATE,no LMIC generic price located; originator-tier placeholder
+FTC,10.0,0.83,HILL2016,"ESTIMATE: no standalone figure; priced as 3TC, its interchangeable analogue"
+FTR,720.0,60.0,ESTIMATE,salvage agent; originator-tier placeholder
+Ibalizumab,24000.0,2000.0,ESTIMATE,salvage agent; originator-tier placeholder
+LPV/r,243.0,20.25,HILL2016,"global lowest, 2016"
+Maraviroc,1440.0,120.0,ESTIMATE,salvage agent; originator-tier placeholder
+NVP,28.0,2.33,HILL2016,"global lowest, 2016"
+RAL,973.0,81.08,HILL2016,"global lowest, 2016; pre-generic"
+RPV,40.0,3.33,HILL2016,"global lowest, 2016"
+TAF,660.0,55.0,ESTIMATE,no LMIC generic price located; originator-tier placeholder
+TDF,15.0,1.25,GF2023,ALLOCATED from TLD FDC ceiling <$45 PPPY; not an independent per-drug price

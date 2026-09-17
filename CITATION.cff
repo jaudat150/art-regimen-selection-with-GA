@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+title: >-
+  Exhaustive search outperforms a genetic algorithm for
+  formulary-constrained antiretroviral regimen selection
+message: >-
+  If you use this software or its results, please cite it using
+  the metadata below.
+type: software
+authors:
+  - given-names: Jaudat Faisal
+    family-names: Al-Husein
+    email: jaudatalhusein@gmail.com
+    affiliation: Antioch Private University, Rural Damascus, Syria
+  - given-names: Omar Ali
+    family-names: Al-Khayat
+    affiliation: Antioch Private University, Rural Damascus, Syria
+repository-code: 'https://github.com/Jaudat150/art-regimen-selection-with-GA'
+abstract: >-
+  WHO-compliant first-line antiretroviral regimen selection formulated
+  as constrained combinatorial optimisation, comparing a genetic
+  algorithm against exhaustive search over a provably identical
+  feasible set. The genetic algorithm reaches the exact optimum for
+  every patient while performing roughly 1,400 times more computation;
+  for 15 of 17 patients the optimum is already present in its randomly
+  initialised population.
+keywords:
+  - combinatorial optimisation
+  - exact algorithms
+  - genetic algorithms
+  - antiretroviral therapy
+  - clinical decision support
+  - benchmarking
+  - negative results
+license: MIT
+version: '1.0'
+date-released: '2026-09-17'
