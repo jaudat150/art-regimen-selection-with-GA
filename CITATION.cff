@@ -14,7 +14,8 @@ authors:
   - given-names: Omar Ali
     family-names: Al-Khayat
     affiliation: Antioch Private University, Rural Damascus, Syria
-repository-code: 'https://github.com/Jaudat150/art-regimen-selection-with-GA'
+repository-code: 'https://github.com/jaudat150/art-regimen-selection-with-GA'
+doi: '10.5281/zenodo.22809521'
 abstract: >-
   WHO-compliant first-line antiretroviral regimen selection formulated
   as constrained combinatorial optimisation, comparing a genetic

@@ -80,8 +80,10 @@ Three residual risks are worth naming explicitly.
 produced a coherent, plausible and entirely wrong clinical conclusion in a system
 whose search logic was by then verified by both an exact baseline and a passing
 test suite. Correctness of the optimiser is not correctness of the
-recommendation. Efficacy, toxicity and resistance penalties remain unsourced
-(Section 5.4); `check_provenance.py` reports their status.
+recommendation. Costs are now sourced;
+efficacy, toxicity and the resistance penalties are not, and two derived
+resistance penalties exceed published class maxima (Section 5.4).
+`check_provenance.py` reports the status of every parameter.
 
 **Weight dependence.** Section 4.6 shows that recommendations change for up to
 59% of the cohort under modest reweighting. The weights encode a health-economic
@@ -143,9 +145,9 @@ tissue were involved.
 **Consent for publication.** Not applicable.
 
 **Availability of data and materials.** All code, data and analysis scripts are
-available at https://github.com/Jaudat150/art-regimen-selection-with-GA. Every
-figure, table and numerical result in this paper is reproduced by
-`python verify.py`.
+available at https://github.com/jaudat150/art-regimen-selection-with-GA and
+archived at https://doi.org/10.5281/zenodo.22809521. Every figure, table and
+numerical result in this paper is reproduced by `python verify.py`.
 
 **Competing interests.** The authors declare that they have no competing
 interests.
@@ -177,12 +179,14 @@ specific classification, because classification depends on jurisdiction and
 intended-use statement, and neither of us is a regulatory specialist. Do not
 sharpen this into a definite claim about what class the device would be.
 
-**Still missing from your reference list.** Earlier feedback you received noted
-that a tutorial website was cited for genetic-algorithm theory. Holland (1975)
-and Goldberg (1989) are now in `references.bib` — use those. The same feedback
-suggested Harrigan and Günthard on resistance-guided therapy; those would
-strengthen Section 2 and I have not added them, since I have not read them and
-will not cite on your behalf what I have not checked.
+**Reference list is now complete.** The tutorial-website citation earlier
+feedback flagged is replaced by Holland (1975) and Goldberg (1989). Harrigan,
+Günthard, Liu & Shafer, Haupts and the IAS-USA panel are in Section 2.2. Neri is
+verified from the author's manuscript — note there are two companion 2007 papers,
+both cited. `references.bib` holds 27 entries.
 
-**`neri2007` remains unverified.** You did not send that PDF. Supply it or cut
-the paragraph.
+**The only placeholder left in this file** is the authors' contributions
+statement above. Write it to match what each of you actually did.
+
+**Delete this "Notes for you" section** before submission. It is scaffolding, not
+manuscript text.

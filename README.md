@@ -1,5 +1,7 @@
 # Formulary-constrained antiretroviral regimen selection
 
+[![DOI](https://zenodo.org/badge/1374155436.svg)](https://doi.org/10.5281/zenodo.22809521)
+
 Code and data for *Exhaustive search outperforms a genetic algorithm for
 formulary-constrained antiretroviral regimen selection*.
 
@@ -83,7 +85,8 @@ With thanks to **Eng. Yasser Mafalani** for his help on this project.
             formulary-constrained antiretroviral regimen selection},
   author = {Al-Husein, Jaudat Faisal and Al-Khayat, Omar Ali},
   year   = {2026},
-  note   = {Preprint}
+  doi    = {10.5281/zenodo.22809521},
+  url    = {https://doi.org/10.5281/zenodo.22809521}
 }
 ```
 
