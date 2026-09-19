@@ -392,3 +392,47 @@ And efficacy is flat across the entire sweep. With the guideline bonus already
 known to be inert, **two of the five objective terms do no work**: the scalarised
 five-term objective behaves as a three-term one on this cohort. Section 4.6
 updated.
+
+
+# Round 9 — a stale number caught in the compiled paper
+
+The paper claimed the optimum was already present in the random initial
+population for **15 of 17** patients. Under the current parameters it is **14 of
+17**, and the evolutionary operators contribute on three patients
+(HIV-SY-005, HIV-SY-006, R-SECOND-HIV-002) rather than two — reaching the
+optimum by generation 3 at the latest, within the first 180 of 6,000 evaluations.
+
+The figure had been right all along, because `make_figures.py` computes the count
+live; the prose had not been updated after the cost and formulary changes moved
+it. `verify.py` did not test this number, which is why 31 checks passed with the
+paper wrong. It does now.
+
+Also corrected in the manuscript:
+- figure cross-references were **crossed** — the initial-population discussion
+  cited Figure 4 and the sensitivity discussion Figure 3, while LaTeX numbered
+  them the other way round. All figure references now use `\ref{}`.
+- `HLA-B\*5701` in the limitations rendered as `HLAB5701`, because `\*` is not a
+  text-mode command.
+
+`verify.py` now runs 31 checks. All pass.
+
+
+# Round 10 — published
+
+Paper published as a Zenodo preprint, 19 September 2026:
+**10.5281/zenodo.22844540**
+
+Authors: Jaudat Faisal Al-Husein, Omar Ali Al-Khayat, Yasser Almofaalani
+(supervisor, third author). The code archive remains under the first two authors.
+
+The paper record is linked to the code DOI (10.5281/zenodo.22809521) as
+"is supplemented by", so the two resolve to each other.
+
+Final state: 31 verification checks, 14 correctness tests, 11-page manuscript,
+27 references, four figures, four tables. Every reported number reproduces from
+`python verify.py`.
+
+Known gaps, all declared in the paper's limitations: efficacy, toxicity and the
+resistance penalties are unsourced; two derived resistance penalties exceed
+published Stanford class maxima; the cohort is 15/17 synthetic. The sequencing
+reformulation argued for in Section 5.2 is the follow-up work.

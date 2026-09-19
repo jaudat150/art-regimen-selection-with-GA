@@ -44,7 +44,7 @@ and exhaustive search over a provably identical feasible set.
 The result is negative, and we report it as the contribution. The feasible set
 holds between two and 130 regimens per patient. Exhaustive search returns the
 optimum in milliseconds; the genetic algorithm matches it on every patient while
-performing roughly 1,400 times more computation, and for 15 of 17 patients the
+performing roughly 1,400 times more computation, and for 14 of 17 patients the
 optimum is already present in its randomly initialised population, so its
 evolutionary operators do no work at all. Because a regimen is a fixed
 three-slot object, the space grows as $O(n^2m)$ in catalogue size and stays

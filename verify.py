@@ -12,6 +12,8 @@ import logging
 import os
 import shutil
 import subprocess
+import contextlib
+import io
 import sys
 import time
 
@@ -138,6 +140,21 @@ for seed in (1, 9, 42):
         _, ef = e.run_exhaustive()
         n += abs(gf - ef) < 1e-9
     check(f'seed {seed}: GA matches optimum 17/17', n == 17, f'{n}/17')
+
+# the paper claims the optimum is already in the random initial population for
+# 14 of 17 patients -- this drifted once when parameters changed, so check it
+with contextlib.redirect_stdout(io.StringIO()):
+    from config.constants import POPULATION_SIZE as _POP, GENERATIONS as _GEN
+    _gen1 = 0
+    for _p in pts:
+        _g = HIVRegimenGA(profile=_p, drug_data=dd, pop_size=_POP,
+                          generations=_GEN, seed=9)
+        _g.run()
+        _h = _g.best_fitness_history
+        if abs(_h[0] - max(_h)) < 1e-9:
+            _gen1 += 1
+check('optimum already in initial population for 14 of 17', _gen1 == 14,
+      f'{_gen1}/17')
 
 # --- 6. sensitivity -----------------------------------------------------------
 print('\n[6] Sensitivity')

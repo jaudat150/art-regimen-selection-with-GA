@@ -40,7 +40,7 @@ We report three implementation artefacts that inflate apparent metaheuristic
 performance — deterministic population initialisation, asymmetric constraint
 application between the compared methods, and fitness normalisation applied
 inside the search loop — each of which we introduced and then detected only by
-comparison against the exact baseline. For 15 of 17 patients the optimum is
+comparison against the exact baseline. For 14 of 17 patients the optimum is
 already present in the randomly initialised population, so the metaheuristic's
 remaining 5,940 evaluations perform no search at all. Sensitivity analysis shows
 recommendations shift for up to 59% of patients under modest reweighting, and

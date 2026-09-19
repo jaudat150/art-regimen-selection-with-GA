@@ -35,3 +35,21 @@ keywords:
 license: MIT
 version: '1.0'
 date-released: '2026-09-17'
+
+preferred-citation:
+  type: article
+  title: >-
+    Exhaustive Search Outperforms a Genetic Algorithm for
+    Formulary-Constrained Antiretroviral Regimen Selection
+  authors:
+    - given-names: Jaudat Faisal
+      family-names: Al-Husein
+    - given-names: Omar Ali
+      family-names: Al-Khayat
+    - given-names: Yasser
+      family-names: Almofaalani
+  year: 2026
+  doi: '10.5281/zenodo.22844540'
+  url: 'https://doi.org/10.5281/zenodo.22844540'
+  publisher:
+    name: Zenodo

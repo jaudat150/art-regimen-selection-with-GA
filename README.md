@@ -1,16 +1,19 @@
 # Formulary-constrained antiretroviral regimen selection
 
-[![DOI](https://zenodo.org/badge/1374155436.svg)](https://doi.org/10.5281/zenodo.22809521)
+[![Paper](https://zenodo.org/badge/DOI/10.5281/zenodo.22844540.svg)](https://doi.org/10.5281/zenodo.22844540)
+[![Code](https://zenodo.org/badge/1374155436.svg)](https://doi.org/10.5281/zenodo.22809521)
 
 Code and data for *Exhaustive search outperforms a genetic algorithm for
-formulary-constrained antiretroviral regimen selection*.
+formulary-constrained antiretroviral regimen selection*
+([preprint](https://doi.org/10.5281/zenodo.22844540) ·
+[PDF](paper/al-husein-2026-art-regimen-selection.pdf)).
 
 We formulate WHO-compliant first-line HIV regimen selection as constrained
 combinatorial optimisation, then compare a genetic algorithm against exhaustive
 search over a provably identical feasible set.
 
 **The genetic algorithm offers no advantage.** It reaches the exact optimum for
-all 17 patients while doing ~1,400× the work — and for 15 of them the optimum was
+all 17 patients while doing ~1,400× the work — and for 14 of them the optimum was
 already in its random starting population, so evolution contributed nothing.
 
 ## Run it
@@ -20,7 +23,7 @@ pip install -r requirements.txt
 python verify.py
 ```
 
-`verify.py` runs everything and checks all 30 numbers reported in the paper.
+`verify.py` runs everything and checks all 31 numbers reported in the paper.
 Exit code 0 means the code and the paper agree. About 90 seconds.
 
 | command | what it does |
@@ -41,7 +44,7 @@ Python 3.9+, numpy, pandas, openpyxl, matplotlib. Nothing else.
 | Feasible regimens per patient | 2–130 (613 across the cohort) |
 | GA reaches the exact optimum | 17/17, seeds 1, 9, 42 |
 | Evaluations: GA vs exhaustive | 102,000 vs 613 |
-| Optimum already in the initial population | 15/17 |
+| Optimum already in the initial population | 14/17 |
 | Recommendations changed by reweighting | up to 59% |
 
 A regimen is a fixed three-slot object, so the space grows as O(n²m) — exhaustive
@@ -74,19 +77,39 @@ an exact baseline and a passing test suite. `CHANGES.md` has the story.
 
 - **Eng. Jaudat Faisal Al-Husein** — [@Jaudat150](https://github.com/Jaudat150)
 - **Eng. Omar Ali Al-Khayat** — [@Alkhayat2003](https://github.com/Alkhayat2003)
+- **Eng. Yasser Almofaalani** — supervisor, third author on the paper
 
-With thanks to **Eng. Yasser Mafalani** for his help on this project.
+Antioch Private University, Rural Damascus, Syria.
+This repository is authored by the first two; all three are authors of the paper.
 
 ## Citation
 
+Cite the paper:
+
 ```bibtex
 @misc{alhusein2026art,
-  title  = {Exhaustive search outperforms a genetic algorithm for
-            formulary-constrained antiretroviral regimen selection},
-  author = {Al-Husein, Jaudat Faisal and Al-Khayat, Omar Ali},
-  year   = {2026},
-  doi    = {10.5281/zenodo.22809521},
-  url    = {https://doi.org/10.5281/zenodo.22809521}
+  title     = {Exhaustive Search Outperforms a Genetic Algorithm for
+               Formulary-Constrained Antiretroviral Regimen Selection},
+  author    = {Al-Husein, Jaudat Faisal and Al-Khayat, Omar Ali and
+               Almofaalani, Yasser},
+  year      = {2026},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.22844540},
+  url       = {https://doi.org/10.5281/zenodo.22844540},
+  note      = {Preprint}
+}
+```
+
+Cite the code:
+
+```bibtex
+@software{alhusein2026artcode,
+  title     = {Formulary-constrained antiretroviral regimen selection: code and data},
+  author    = {Al-Husein, Jaudat Faisal and Al-Khayat, Omar Ali},
+  year      = {2026},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.22809521},
+  url       = {https://doi.org/10.5281/zenodo.22809521}
 }
 ```
 
