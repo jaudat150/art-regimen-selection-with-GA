@@ -6,14 +6,15 @@ Antiretroviral Regimen Selection*
 Jaudat Faisal Al-Husein · Omar Ali Al-Khayat · Yasser Almofaalani
 Antioch Private University, Rural Damascus, Syria
 
-Published as a preprint, 19 September 2026 —
-[10.5281/zenodo.22844540](https://doi.org/10.5281/zenodo.22844540)
+Published as a preprint —
+[10.5281/zenodo.22844539](https://doi.org/10.5281/zenodo.22844539)
+(concept DOI; always resolves to the latest version)
 
-> **Note.** The PDF in this folder is revised relative to the Zenodo v1 record.
-> The cost comparison is now reported as the evaluation ratio (166×, exact and
-> hardware-independent) rather than wall-clock time, which varied between roughly
-> 1,400× and 2,000× across machines. See `CHANGES.md`, Round 11. A corrected
-> version will be deposited on Zenodo under the same concept DOI.
+> **Note.** The PDF in this folder reports the cost comparison as the evaluation
+> ratio (166×, exact and hardware-independent) rather than wall-clock time, which
+> varied between roughly 1,400× and 2,000× across machines. See `CHANGES.md`,
+> Round 11. Zenodo versions v1 and v2 predate this correction; cite the concept
+> DOI above, which resolves to the current version.
 
 ## Contents
 

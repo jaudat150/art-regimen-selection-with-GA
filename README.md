@@ -1,11 +1,11 @@
 # Formulary-constrained antiretroviral regimen selection
 
-[![Paper](https://zenodo.org/badge/DOI/10.5281/zenodo.22844540.svg)](https://doi.org/10.5281/zenodo.22844540)
+[![Paper](https://zenodo.org/badge/DOI/10.5281/zenodo.22844539.svg)](https://doi.org/10.5281/zenodo.22844539)
 [![Code](https://zenodo.org/badge/DOI/10.5281/zenodo.22809521.svg)](https://doi.org/10.5281/zenodo.22809521)
 
 Code and data for *Exhaustive search outperforms a genetic algorithm for
 formulary-constrained antiretroviral regimen selection*
-([preprint](https://doi.org/10.5281/zenodo.22844540) ·
+([preprint](https://doi.org/10.5281/zenodo.22844539) ·
 [PDF](paper/al-husein-2026-art-regimen-selection.pdf)).
 
 We formulate WHO-compliant first-line HIV regimen selection as constrained
@@ -95,8 +95,8 @@ Cite the paper:
                Almofaalani, Yasser},
   year      = {2026},
   publisher = {Zenodo},
-  doi       = {10.5281/zenodo.22844540},
-  url       = {https://doi.org/10.5281/zenodo.22844540},
+  doi       = {10.5281/zenodo.22844539},
+  url       = {https://doi.org/10.5281/zenodo.22844539},
   note      = {Preprint}
 }
 ```

@@ -495,3 +495,22 @@ Zenodo v1 record, so a reader comparing the two is not left guessing.
 Outstanding: the published preprint (10.5281/zenodo.22844540 v1) still reports
 the wall-clock figure. A corrected version under the same concept DOI is pending
 co-author agreement.
+
+
+# Round 13 — citing a version DOI instead of the concept DOI
+
+A third audit established two things.
+
+**Zenodo v2 was a filename fix, not a content fix.** It carries the same PDF as
+v1, with the stray "by JOY" removed from the filename. Both v1 and v2 still
+report the wall-clock figure; neither contains the evaluation ratio. The
+correction needs a v3.
+
+**The DOI in every citation was the wrong one.** `10.5281/zenodo.22844540` is the
+*version* DOI for v1. The concept DOI — the one that always resolves to the
+latest version — is `10.5281/zenodo.22844539`. Citing the version DOI would have
+pinned every reference to v1 permanently, including after the correction was
+deposited. Changed in `README.md`, `CITATION.cff` and `paper/README.md`.
+
+The code archive was already correct: `10.5281/zenodo.22809521` is a concept DOI
+and resolves to v1.1.
