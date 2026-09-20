@@ -106,7 +106,7 @@ Cite the code:
 ```bibtex
 @software{alhusein2026artcode,
   title     = {Exhaustive Search Outperforms a Genetic Algorithm for
-               Formulary-Constrained Antiretroviral Regimen Selection: code and data},
+               Formulary-Constrained Antiretroviral Regimen Selection},
   author    = {Al-Husein, Jaudat Faisal and Al-Khayat, Omar Ali},
   year      = {2026},
   publisher = {Zenodo},

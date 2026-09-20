@@ -469,3 +469,29 @@ CITATION.cff's citation type (`article` → `preprint`).
 
 Version bumped to 1.1. The v1.0 Zenodo code archive predates the preprint and
 still carries the superseded description; cutting a v1.1 release refreshes it.
+
+
+# Round 12 — a citation file that did not validate
+
+A second external audit of the v1.1 repository found that `CITATION.cff` no
+longer validates. Round 11 changed the paper's citation type from `article` to
+`preprint`, and `preprint` is not in the CFF 1.2.0 reference-type enumeration at
+all. GitHub's widget tolerated it and fell back to `@misc`, so the error was
+invisible on the repository page; `cffconvert --validate` rejects the file, and
+so would Zenodo and other CFF consumers.
+
+Changed to `generic`, which validates, renders as `@misc`, and matches the
+README's BibTeX. `cffconvert` now validates the file clean.
+
+Also fixed: LaTeX em-dash syntax (`---`) had leaked into `paper/results.md`,
+where it renders literally on GitHub; a clumsy sentence in the same file
+("Wall-clock time understates neither method but...") replaced with the cleaner
+wording already in `main.tex`; and the `@software` title in the README aligned
+with `CITATION.cff` and the Zenodo code record.
+
+`paper/README.md` now carries a note that its PDF is revised relative to the
+Zenodo v1 record, so a reader comparing the two is not left guessing.
+
+Outstanding: the published preprint (10.5281/zenodo.22844540 v1) still reports
+the wall-clock figure. A corrected version under the same concept DOI is pending
+co-author agreement.

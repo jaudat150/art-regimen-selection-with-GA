@@ -29,17 +29,17 @@ solution, which is expected: exhaustive search is optimal by construction.
 
 The cost asymmetry is substantial. The genetic algorithm performs
 $60 \times 100 = 6{,}000$ fitness evaluations per patient regardless of instance
-size --- 102,000 across the cohort --- while exhaustive search performs one
+size — 102,000 across the cohort — while exhaustive search performs one
 evaluation per feasible regimen, 613 in total. The evaluation ratio is therefore
 166, and this figure is exact and independent of hardware. Figure 2 shows the
 per-patient counts on a logarithmic scale.
 
-Wall-clock time understates neither method but is the less useful comparison. On
+Wall-clock time is the less useful comparison. On
 one core the genetic algorithm took 10.3 s against 0.0067 s for exhaustive
 search, a factor near 1,550; across machines we observed this ratio between
 roughly 1,400 and 2,000. It exceeds the evaluation ratio because the genetic
-algorithm's per-generation overhead --- selection, crossover, mutation and repair
-into the feasible set --- dominates when each fitness evaluation is only a few
+algorithm's per-generation overhead — selection, crossover, mutation and repair
+into the feasible set — dominates when each fitness evaluation is only a few
 table lookups. We report the evaluation ratio as the primary figure for that
 reason.
 
@@ -103,7 +103,7 @@ patients the best regimen found across the entire run is already present in the
 **randomly initialised generation-1 population**; the reported improvement from
 generation 1 to generation 100 is exactly zero. The evolutionary operators
 contribute on three patients only (HIV-SY-005, HIV-SY-006 and R-SECOND-HIV-002),
-and there the optimum is reached by generation 3 at the latest --- within the
+and there the optimum is reached by generation 3 at the latest — within the
 first 180 of 6,000 evaluations.
 
 This is predictable rather than accidental. With a population of 60 sampled

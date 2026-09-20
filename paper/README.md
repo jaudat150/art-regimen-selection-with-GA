@@ -9,6 +9,12 @@ Antioch Private University, Rural Damascus, Syria
 Published as a preprint, 19 September 2026 —
 [10.5281/zenodo.22844540](https://doi.org/10.5281/zenodo.22844540)
 
+> **Note.** The PDF in this folder is revised relative to the Zenodo v1 record.
+> The cost comparison is now reported as the evaluation ratio (166×, exact and
+> hardware-independent) rather than wall-clock time, which varied between roughly
+> 1,400× and 2,000× across machines. See `CHANGES.md`, Round 11. A corrected
+> version will be deposited on Zenodo under the same concept DOI.
+
 ## Contents
 
 | | |
