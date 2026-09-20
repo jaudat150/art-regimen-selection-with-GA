@@ -1,10 +1,3 @@
-# Methods
-
-*Paste-ready draft. Citation keys in `\cite{}` correspond to `paper/references.bib`.
-Numbers are reproducible via `python run_comparison.py`.*
-
----
-
 ## 3. Methods
 
 ### 3.1 Problem formulation

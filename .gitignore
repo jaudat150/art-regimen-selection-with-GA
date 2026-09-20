@@ -9,8 +9,6 @@ env/
 reports/regimens/
 reports/viz/
 reports/*.csv
-paper/figures/*.png
-paper/figures/*.pdf
 data/AllPatients_v2.xlsx
 data/drugs_sourced.xlsx
 

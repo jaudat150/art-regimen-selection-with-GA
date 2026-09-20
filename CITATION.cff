@@ -22,7 +22,7 @@ abstract: >-
   algorithm against exhaustive search over a provably identical
   feasible set. The genetic algorithm reaches the exact optimum for
   every patient while performing roughly 1,400 times more computation;
-  for 15 of 17 patients the optimum is already present in its randomly
+  for 14 of 17 patients the optimum is already present in its randomly
   initialised population.
 keywords:
   - combinatorial optimisation

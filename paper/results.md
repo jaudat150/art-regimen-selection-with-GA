@@ -1,10 +1,3 @@
-# Results & Discussion
-
-*Paste-ready draft. All figures in `paper/figures/`, tables in `paper/tables/`.
-Reproducible via `python run_comparison.py` and `python paper/make_figures.py`.*
-
----
-
 ## 4. Results
 
 ### 4.1 Search space characterisation
@@ -96,13 +89,12 @@ adequate, as it cannot represent the forward cost of exhausting a drug class.
 
 ### 4.5 The genetic algorithm's search contributes nothing
 
-Inspecting the convergence traces makes the mechanism explicit. For 14 of 17
+Inspecting the convergence traces makes the mechanism explicit. For 15 of 17
 patients the best regimen found across the entire run is already present in the
 **randomly initialised generation-1 population**; the reported improvement from
 generation 1 to generation 100 is exactly zero. The evolutionary operators
-contribute on three patients only (HIV-SY-005, HIV-SY-006 and R-SECOND-HIV-002),
-and there the optimum is reached by generation 3 at the latest --- within the
-first 180 of 6,000 evaluations.
+contribute on two patients only (HIV-SY-005 and HIV-SY-007), and there by one
+and two generations respectively.
 
 This is predictable rather than accidental. With a population of 60 sampled
 uniformly from a feasible set of size $|\mathcal{R}|$, the probability that the

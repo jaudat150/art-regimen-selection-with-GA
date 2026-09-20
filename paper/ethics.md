@@ -1,11 +1,3 @@
-# Ethics, Safety and Declarations
-
-*Paste-ready. Addresses the reviewer comments on data governance, safety
-validation, liability and regulatory pathway, plus the declarations journals
-require. Section numbering assumes this follows Discussion.*
-
----
-
 ## 6. Ethics, safety and governance
 
 A regimen optimiser is a clinical decision support system, and the question of
@@ -155,38 +147,8 @@ interests.
 **Funding.** This research received no specific grant from any funding agency in
 the public, commercial or not-for-profit sectors.
 
-**Authors' contributions.** [ADJUST TO MATCH REALITY — e.g. JFA designed and
-implemented the optimisation framework, conducted the experiments and drafted the
-manuscript. OAK contributed to the clinical rule specification and manuscript
-revision. Both authors read and approved the final manuscript.]
-
-**Acknowledgements.** The authors thank Eng. Yasser Mafalani for his help with
-this work.
-
----
-
-## Notes for you
-
-**On §6.4.** Your earlier draft claimed a human-in-the-loop design. The
-implementation has no clinician interaction, so I have written this as a design
-*position* with an explicit statement that it is not validated, and named
-automation bias as an unmitigated risk. That is defensible. Claiming a
-human-in-the-loop system you have not built is not, and a reviewer who opens the
-repository will see the difference immediately.
-
-**On §6.5.** I have described the regulatory landscape rather than asserting a
-specific classification, because classification depends on jurisdiction and
-intended-use statement, and neither of us is a regulatory specialist. Do not
-sharpen this into a definite claim about what class the device would be.
-
-**Reference list is now complete.** The tutorial-website citation earlier
-feedback flagged is replaced by Holland (1975) and Goldberg (1989). Harrigan,
-Günthard, Liu & Shafer, Haupts and the IAS-USA panel are in Section 2.2. Neri is
-verified from the author's manuscript — note there are two companion 2007 papers,
-both cited. `references.bib` holds 27 entries.
-
-**The only placeholder left in this file** is the authors' contributions
-statement above. Write it to match what each of you actually did.
-
-**Delete this "Notes for you" section** before submission. It is scaffolding, not
-manuscript text.
+**Authors' contributions.** JFA and OAK contributed to the design and
+implementation of the optimisation framework and to the experimental work
+throughout. OAK led the software architecture and code organisation. JFA drafted
+the manuscript. YM supervised the work and reviewed the manuscript. All authors
+read and approved the final manuscript.

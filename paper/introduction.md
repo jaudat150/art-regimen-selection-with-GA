@@ -1,12 +1,3 @@
-# Introduction & Related Work
-
-*Paste-ready draft. Section 2 is a reorganisation of your existing
-`1 StateOfTheArtTester.docx` — the four studies, their descriptions, and your
-per-paper limitation notes all survive. What changes is the question the section
-is organised around.*
-
----
-
 ## 1. Introduction
 
 Antiretroviral therapy has turned HIV infection into a manageable chronic
@@ -44,7 +35,7 @@ and exhaustive search over a provably identical feasible set.
 The result is negative, and we report it as the contribution. The feasible set
 holds between two and 130 regimens per patient. Exhaustive search returns the
 optimum in milliseconds; the genetic algorithm matches it on every patient while
-performing roughly 1,400 times more computation, and for 14 of 17 patients the
+performing roughly 1,400 times more computation, and for 15 of 17 patients the
 optimum is already present in its randomly initialised population, so its
 evolutionary operators do no work at all. Because a regimen is a fixed
 three-slot object, the space grows as $O(n^2m)$ in catalogue size and stays
@@ -67,23 +58,6 @@ depend on the patient distribution, but the empirical results do. And several
 model parameters — per-drug efficacy, toxicity, and the resistance penalties —
 remain unsourced; we report which, and treat conclusions resting on them
 accordingly.
-
-**Contributions.**
-
-1. A formulary-tier access model for antiretroviral availability, derived from
-   WHO guidance and reported as a patient covariate rather than assumed.
-2. A characterisation of the regimen-selection search space showing it grows
-   polynomially and remains exhaustively searchable at catalogue sizes far
-   beyond the present one.
-3. A head-to-head comparison of a genetic algorithm against an exact baseline
-   over a provably identical feasible set, with the finding that the
-   metaheuristic's search contributes nothing at this scale.
-4. Four reproducible failure modes — three in the comparison, one in the data —
-   that inflate or invert results and are difficult to detect without an exact
-   baseline.
-5. A delimitation of the conditions under which evolutionary search *is*
-   warranted for this problem, and a quantified threshold at which those
-   conditions begin to hold.
 
 ---
 
@@ -269,50 +243,3 @@ objective — and asks what search method that formulation actually requires. Th
 answer bears directly on the sequencing formulation prior work approached from
 the scheduling side, and which we argue in Section 5.2 is where evolutionary
 search for this problem properly belongs.
-
----
-
-## Notes for you
-
-**Citations.** Three of the four are now complete in `references.bib`, with the
-specific numbers quoted above verified against the PDFs you sent: Castiglione's
-24-bit chromosome, 30,720 simulations, 30-minute evaluations, 128-PC cluster,
-and the 34.11 / 30.50 / 21.86 / 20.25% survival figures; Golpayegani's 32-bit
-chromosome, population 320, 50 generations, 47% dosage reduction and 3.9%
-healthy-cell shortfall; Betechuoh's four-gene chromosome and 84.24% vs 74%
-accuracy.
-
-**Neri is now verified from the author's manuscript** — and one detail in your
-original notes was wrong. There are *two* 2007 papers: the "intelligent mutation
-local searchers" phrasing belongs to the Applied Intelligence paper, while the
-Adaptive Multimeme Algorithm is the IEEE/ACM TCBB paper. Both are cited. Their
-model is Adams–Banks (2005), a six-compartment ODE system — not Wodarz–Nowak,
-which they cite only as prior art.
-
-**Section 2.2 is new** and cites Harrigan, Günthard and the IAS-USA panel, as
-earlier feedback requested. Each sentence reflects what those papers actually
-report.
-
-**One claim I removed.** Your draft opened by stating that "exhaustive search or
-rule-based approaches quickly become intractable." Section 4.1 measures the
-feasible set at 2–130 regimens per patient and shows the space grows
-polynomially. The sentence and the results cannot both stand. Section 2.4
-replaces it with the distinction that actually holds: exhaustive search *is*
-intractable when fitness requires a 30-minute simulation, which is why prior work
-was right to use metaheuristics and why the conclusion changes once the
-simulation is removed. That reframing costs you nothing and strengthens the
-paper — it lets you keep every description of prior work while making your own
-contribution follow from a genuine difference in formulation rather than a
-disagreement about tractability.
-
-**On tone toward prior work.** Section 2.4 is deliberately careful. A reviewer
-who has published an evolutionary HIV-therapy paper without an exact baseline is
-a plausible referee for this manuscript, and the honest framing — that the
-omission is defensible under expensive fitness, and that we introduced three
-artefacts ourselves despite having the baseline — is both true and much harder to
-take offence at. Do not sharpen it.
-
-**Your human-in-the-loop framing** appeared in the original draft's closing
-paragraph. I have left it out: the current implementation has no clinician
-interaction, and claiming it would be unsupported. If you build it, it belongs in
-future work.

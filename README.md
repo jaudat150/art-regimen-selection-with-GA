@@ -1,7 +1,7 @@
 # Formulary-constrained antiretroviral regimen selection
 
 [![Paper](https://zenodo.org/badge/DOI/10.5281/zenodo.22844540.svg)](https://doi.org/10.5281/zenodo.22844540)
-[![Code](https://zenodo.org/badge/1374155436.svg)](https://doi.org/10.5281/zenodo.22809521)
+[![Code](https://zenodo.org/badge/DOI/10.5281/zenodo.22809521.svg)](https://doi.org/10.5281/zenodo.22809521)
 
 Code and data for *Exhaustive search outperforms a genetic algorithm for
 formulary-constrained antiretroviral regimen selection*
