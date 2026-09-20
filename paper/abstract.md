@@ -23,8 +23,8 @@ modelled through three formulary tiers derived from WHO guidance rather than
 assumed universal. Evaluating a genetic algorithm and exhaustive search over a
 provably identical feasible set across 17 patient profiles, we find the feasible
 set contains 2–130 regimens per patient. The genetic algorithm recovers the exact
-optimum for every patient across three random seeds, while requiring
-approximately 1,400 times more computation. Because a regimen is a fixed
+optimum for every patient across three random seeds, while performing 166 times
+as many fitness evaluations. Because a regimen is a fixed
 three-slot object, the space grows as $O(n^2m)$ in catalogue size: exhaustive
 search remains sub-second at twenty-five times the present catalogue.
 

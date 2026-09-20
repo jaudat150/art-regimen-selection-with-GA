@@ -13,7 +13,8 @@ combinatorial optimisation, then compare a genetic algorithm against exhaustive
 search over a provably identical feasible set.
 
 **The genetic algorithm offers no advantage.** It reaches the exact optimum for
-all 17 patients while doing ~1,400× the work — and for 14 of them the optimum was
+all 17 patients while performing 166× as many fitness evaluations — and for 14 of
+them the optimum was
 already in its random starting population, so evolution contributed nothing.
 
 ## Run it
@@ -43,7 +44,7 @@ Python 3.9+, numpy, pandas, openpyxl, matplotlib. Nothing else.
 |---|---|
 | Feasible regimens per patient | 2–130 (613 across the cohort) |
 | GA reaches the exact optimum | 17/17, seeds 1, 9, 42 |
-| Evaluations: GA vs exhaustive | 102,000 vs 613 |
+| Evaluations: GA vs exhaustive | 102,000 vs 613 (166×) |
 | Optimum already in the initial population | 14/17 |
 | Recommendations changed by reweighting | up to 59% |
 
@@ -104,7 +105,8 @@ Cite the code:
 
 ```bibtex
 @software{alhusein2026artcode,
-  title     = {Formulary-constrained antiretroviral regimen selection: code and data},
+  title     = {Exhaustive Search Outperforms a Genetic Algorithm for
+               Formulary-Constrained Antiretroviral Regimen Selection: code and data},
   author    = {Al-Husein, Jaudat Faisal and Al-Khayat, Omar Ali},
   year      = {2026},
   publisher = {Zenodo},

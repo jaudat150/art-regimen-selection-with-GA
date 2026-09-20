@@ -436,3 +436,36 @@ Known gaps, all declared in the paper's limitations: efficacy, toxicity and the
 resistance penalties are unsourced; two derived resistance penalties exceed
 published Stanford class maxima; the cohort is 15/17 synthetic. The sequencing
 reformulation argued for in Section 5.2 is the follow-up work.
+
+
+# Round 11 — an unstable headline number
+
+An external audit of the published repository found three defects.
+
+**Two markdown sections were never updated from 15 to 14.** `paper/results.md`
+and `paper/introduction.md` still carried the superseded count, and results.md
+still named two improving patients (HIV-SY-005, HIV-SY-007) where the corrected
+figure is three (HIV-SY-005, HIV-SY-006, R-SECOND-HIV-002). The compiled PDF and
+`main.tex` were already correct; the markdown had drifted.
+
+**The headline speed figure was wall-clock, and wall-clock is not stable.** The
+abstract claimed "approximately 1,400 times more computation" while Section 4.2
+reported 1,550, and across the machines used in this project the ratio ranged
+from about 1,400 to 2,000 — a spread of 40% in what was presented as a property
+of the algorithms.
+
+The stable quantity is the evaluation ratio: 102,000 genetic-algorithm
+evaluations against 613 exhaustive ones, exactly **166**, independent of
+hardware. The paper now leads with that and reports wall-clock separately,
+explaining why it exceeds the evaluation ratio (per-generation overhead dominates
+when a fitness evaluation is a few table lookups).
+
+This is the fourth time in this project that a number looked authoritative and
+was not. It is also the first one an outside reader found rather than a test.
+
+**Also fixed:** the code DOI badge (the repository-ID badge URL returned 503;
+switched to the DOI-form badge), the `@software` title in the README, and
+CITATION.cff's citation type (`article` → `preprint`).
+
+Version bumped to 1.1. The v1.0 Zenodo code archive predates the preprint and
+still carries the superseded description; cutting a v1.1 release refreshes it.

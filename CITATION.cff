@@ -21,7 +21,7 @@ abstract: >-
   as constrained combinatorial optimisation, comparing a genetic
   algorithm against exhaustive search over a provably identical
   feasible set. The genetic algorithm reaches the exact optimum for
-  every patient while performing roughly 1,400 times more computation;
+  every patient while performing 166 times as many fitness evaluations;
   for 14 of 17 patients the optimum is already present in its randomly
   initialised population.
 keywords:
@@ -33,11 +33,11 @@ keywords:
   - benchmarking
   - negative results
 license: MIT
-version: '1.0'
-date-released: '2026-09-17'
+version: '1.1'
+date-released: '2026-09-20'
 
 preferred-citation:
-  type: article
+  type: preprint
   title: >-
     Exhaustive Search Outperforms a Genetic Algorithm for
     Formulary-Constrained Antiretroviral Regimen Selection
