@@ -9,6 +9,7 @@
 \usepackage{xcolor}
 \usepackage{booktabs}
 \usepackage{url}
+\usepackage{xurl}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 
@@ -56,7 +57,7 @@ We conclude that metaheuristic search for this problem is warranted only under a
 combinatorial optimisation, exact algorithms, genetic algorithms, antiretroviral therapy, clinical decision support, benchmarking, negative results
 \end{IEEEkeywords}
 
-\section{Introduction}
+\section{Introduction}\label{sec:intro}
 
 Antiretroviral therapy has turned HIV infection into a manageable chronic condition, but choosing a regimen for an individual patient remains a decision under several competing constraints. A regimen must suppress the virus given whatever resistance mutations the patient carries, avoid drugs contraindicated by their hepatic, renal or pregnancy status, keep toxicity and side-effect burden low enough to sustain lifelong adherence, and cost little enough to be dispensable by the health system treating them. In resource-constrained settings the last of these is frequently the binding constraint rather than a secondary consideration: what a clinic stocks determines what can be prescribed, before any clinical reasoning begins.
 
@@ -72,11 +73,11 @@ We report three implementation artefacts encountered along the way --- determini
 
 Two caveats belong here rather than buried in the limitations. Fifteen of our seventeen patient profiles are synthetic, and no claim about real-world clinical outcomes is supported by this work; the search-space characterisation does not depend on the patient distribution, but the empirical results do. And several model parameters --- per-drug efficacy, toxicity, and the resistance penalties --- remain unsourced; we report which, and treat conclusions resting on them accordingly.
 
-\section{Related Work}
+\section{Related Work}\label{sec:related}
 
 Evolutionary algorithms have been applied to antiretroviral therapy optimisation for more than fifteen years. We review that work below, organised around a question the field does not usually foreground: \textbf{how have these methods been evaluated, and against what?}
 
-\subsection{Simulation-coupled evolutionary therapy design}
+\subsection{Simulation-coupled evolutionary therapy design}\label{sec:rw-sim}
 
 The earliest sustained line of work couples a genetic algorithm to a biological simulator. Castiglione et al. combined a genetic algorithm with the C-ImmSim agent-based immune simulator to optimise highly active antiretroviral therapy schedules \cite{castiglione2007}. A chromosome was a 24-bit binary string, one bit per week of a six-month therapeutic horizon, indicating whether antiretroviral drugs were administered that week. Selection was by tournament, reproduction by uniform crossover, with elitism on the two fittest individuals. The fitness function summed three terms --- normalised HIV load, a CD4 recovery ratio, and the fraction of active therapy days --- and was minimised. The optimal schedule achieved survival close to continuous therapy (30.5\% against 34.11\% in simulated opportunistic-infection challenge) while administering therapy for 15 weeks rather than 25, roughly 40\% less drug.
 
@@ -92,19 +93,19 @@ This work is directly instructive for the present question, because it is the on
 
 Treatment representation nonetheless remained centred on temporal scheduling rather than drug identity: agents enter only as class-level efficacy parameters, so toxicity differentiation, resistance profiles and guideline constraints were not incorporated into the search.
 
-\subsection{Resistance-guided regimen selection}
+\subsection{Resistance-guided regimen selection}\label{sec:rw-resist}
 
 A parallel and much larger literature addresses the clinical problem our formulation targets: using genotypic resistance information to select a regimen for an individual patient. Liu and Shafer review the principles by which a genotype is translated into drug-level resistance interpretations and survey the web-based systems that implement this, noting that prospective controlled studies have found patients whose physicians have access to genotypic resistance data respond better to therapy than controls \cite{liu2006}. Haupts et al., in the Swiss HIV Cohort, provide direct evidence from 145 adults with virologic failure that lower resistance scores predicted improved virologic response to a new regimen, and that treatment choices informed by genotype plus decision-support software were virologically superior to those based on treatment history alone \cite{haupts2003}.
 
-Harrigan et al. characterised the determinants of emergent resistance in 1,191 antiretroviral-naive adults initiating therapy in British Columbia, finding high baseline viral load and imperfect adherence to be the principal predictors \cite{harrigan2005} --- a reminder that resistance is partly a consequence of the regimen chosen and the adherence it permits, which is the forward-looking dependency our single-decision formulation cannot represent (Section 5.2). The International Antiviral Society--USA panel's recommendations set out when resistance testing should inform regimen selection \cite{gunthard2019}, and its periodically updated mutations figure provides the reference list of resistance-associated mutations \cite{wensing2019}.
+Harrigan et al. characterised the determinants of emergent resistance in 1,191 antiretroviral-naive adults initiating therapy in British Columbia, finding high baseline viral load and imperfect adherence to be the principal predictors \cite{harrigan2005} --- a reminder that resistance is partly a consequence of the regimen chosen and the adherence it permits, which is the forward-looking dependency our single-decision formulation cannot represent (Section~\ref{sec:sequencing}). The International Antiviral Society--USA panel's recommendations set out when resistance testing should inform regimen selection \cite{gunthard2019}, and its periodically updated mutations figure provides the reference list of resistance-associated mutations \cite{wensing2019}.
 
 Our work sits alongside rather than within this literature: we take resistance-adjusted susceptibility as an input and ask what search procedure the resulting optimisation problem requires. The interpretation algorithms above are what a deployed system would use to produce that input.
 
-\subsection{Evolutionary computation on adjacent HIV tasks}
+\subsection{Evolutionary computation on adjacent HIV tasks}\label{sec:rw-adj}
 
 Genetic algorithms have also been applied to HIV problems other than therapy design. Betechuoh et al. used a genetic algorithm to tune multilayer-perceptron hyperparameters --- hidden-node count, learning rate, training cycles and classification threshold --- for predicting HIV status from demographic data, reporting 84.24\% accuracy against 74\% for line-search optimisation \cite{betechuoh2006}. Here the genetic algorithm performs hyperparameter tuning rather than treatment optimisation, and we note it only to bound the scope of evolutionary computation in this domain.
 
-\subsection{How this work has been evaluated}
+\subsection{How this work has been evaluated}\label{sec:rw-eval}
 
 Across this literature, three things are consistently reported: convergence behaviour, final solution quality under the study's own objective, and improvement relative to earlier evolutionary variants. Three others are largely absent: the size of the feasible set being searched --- reported, to our knowledge, only by Neri et al. \cite{neri2007tcbb} --- a comparison against exhaustive enumeration of that set, and the sensitivity of recommendations to the objective's weights.
 
@@ -118,27 +119,27 @@ The search spaces differ correspondingly. Neri et al. report approximately $7.7 
 
 That is what makes the present formulation different, and what makes the baseline newly informative. Removing the expensive simulation removes the condition that justified the metaheuristic --- and whether the metaheuristic is still earning its cost becomes an empirical question that had not, to our knowledge, been asked for this problem. It turns out not to be.
 
-Two further distinctions follow from the same shift. Prior work modelled two drug classes; the current catalogue contains six, and the choice \textit{between} agents within a class --- with their differing toxicity, resistance and cost profiles --- is the decision a clinician actually faces. And prior work optimised without clinician interaction; whether such systems should operate autonomously is a question we take up in Section 6.
+Two further distinctions follow from the same shift. Prior work modelled two drug classes; the current catalogue contains six, and the choice \textit{between} agents within a class --- with their differing toxicity, resistance and cost profiles --- is the decision a clinician actually faces. And prior work optimised without clinician interaction; whether such systems should operate autonomously is a question we take up in Section~\ref{sec:ethics}.
 
-Our own experience is the argument for reporting the baseline routinely. Three of the four failure modes in Section 4 are ones we introduced ourselves, and all three would have gone undetected without an exact result to check against: each produced convergence traces and final solutions that looked entirely reasonable. This is not a hazard peculiar to prior work; it is one we walked into repeatedly with the baseline available to catch us.
+Our own experience is the argument for reporting the baseline routinely. Three of the four failure modes in Section~\ref{sec:results} are ones we introduced ourselves, and all three would have gone undetected without an exact result to check against: each produced convergence traces and final solutions that looked entirely reasonable. This is not a hazard peculiar to prior work; it is one we walked into repeatedly with the baseline available to catch us.
 
-\subsection{Positioning}
+\subsection{Positioning}\label{sec:rw-pos}
 
 Prior evolutionary approaches show that these methods can explore complex HIV treatment spaces and balance competing objectives. They predominantly address binary scheduling or structured interruptions, rely on computationally expensive simulation, and treat drugs as homogeneous rather than modelling agent-specific effects, toxicities and modern multi-class combinations.
 
-The present work takes the complementary formulation --- explicit selection among differentiated agents under guideline and formulary constraints, with a cheap objective --- and asks what search method that formulation actually requires. The answer bears directly on the sequencing formulation prior work approached from the scheduling side, and which we argue in Section 5.2 is where evolutionary search for this problem properly belongs.
+The present work takes the complementary formulation --- explicit selection among differentiated agents under guideline and formulary constraints, with a cheap objective --- and asks what search method that formulation actually requires. The answer bears directly on the sequencing formulation prior work approached from the scheduling side, and which we argue in Section~\ref{sec:sequencing} is where evolutionary search for this problem properly belongs.
 
-\section{Methods}
+\section{Methods}\label{sec:methods}
 
-\subsection{Problem formulation}
+\subsection{Problem formulation}\label{sec:formulation}
 
 We model first-line antiretroviral therapy (ART) selection as a constrained combinatorial optimisation problem. Let $D$ be the catalogue of available antiretroviral drugs, partitioned by class into nucleoside/nucleotide reverse transcriptase inhibitors ($D_{\text{NRTI}}$), integrase strand transfer inhibitors, non-nucleoside reverse transcriptase inhibitors, and boosted protease inhibitors. Following WHO guidance, a valid regimen $r$ consists of two NRTIs forming a backbone plus one third agent drawn from the remaining classes \cite{who2021consolidated,who2018update}:
 
-$$r = \{d_1, d_2, d_3\},\quad d_1, d_2 \in D_{\text{NRTI}},\ d_1 \neq d_2,\quad d_3 \in D \setminus D_{\text{NRTI}}$$
+$$r = \{d_1, d_2, d_3\},\;\; d_1, d_2 \in D_{\text{NRTI}},\; d_1 \neq d_2,\;\; d_3 \in D \setminus D_{\text{NRTI}}$$
 
 A regimen is unordered: $\{d_1, d_2, d_3\}$ is a set, not a sequence. This distinction matters for complexity analysis, as enumerating ordered NRTI pairs inflates the apparent search space by a factor of two.
 
-\subsection{Clinical validity constraints}
+\subsection{Clinical validity constraints}\label{sec:constraints}
 
 Three constraints restrict the feasible set.
 
@@ -148,9 +149,9 @@ Three constraints restrict the feasible set.
 
 We note this explicitly because a purely class-structural validity check --- two NRTIs plus one third agent --- admits all three of these pairs. In our cohort, omitting the redundancy constraint caused 12 of 17 optimiser outputs to be clinically inadmissible while passing structural validation.
 
-\textbf{Formulary access.} Drug availability is modelled through service-delivery tiers (Section 3.3) rather than assumed universal.
+\textbf{Formulary access.} Drug availability is modelled through service-delivery tiers (Section~\ref{sec:formulary}) rather than assumed universal.
 
-\subsection{Formulary access model}
+\subsection{Formulary access model}\label{sec:formulary}
 
 Antiretroviral availability varies substantially by health-system context, and in resource-constrained settings it is often the binding constraint on regimen choice rather than a secondary consideration. Rather than assigning arbitrary per-patient availability lists, we define three nested formulary tiers derived from published guidance (Table 1).
 
@@ -162,7 +163,7 @@ Antiretroviral availability varies substantially by health-system context, and i
 
 Tiers are nested, so a patient's tier bounds the options available at every line of therapy, not only the first. We assign tiers across the cohort in a 65 / 25 / 10 ratio. This proportion is a modelling assumption reflecting the concentration of care in public facilities; we report tier as a covariate so its effect can be inspected directly.
 
-\subsection{Fitness function}
+\subsection{Fitness function}\label{sec:fitness}
 
 We use a linear scalarisation of five objectives:
 
@@ -170,17 +171,17 @@ $$f(r) = w_e \bar{E}(r) - w_t T(r) - w_c C(r) - w_s S(r) + w_b B(r)$$
 
 where $\bar{E}$ is mean resistance-adjusted efficacy, $T$ cumulative organ toxicity, $C$ monthly cost, $S$ side-effect burden weighted by patient-specific sensitivities, and $B$ a WHO-compliance bonus. Weights are patient-adjusted: cost weight scales with reported cost sensitivity, and toxicity weight with hepatic or renal impairment.
 
-Linear scalarisation was chosen for three reasons: it yields a single scalar directly usable as a genetic-algorithm fitness value; the weights are individually interpretable and can be elicited from clinicians in the units of each objective; and it permits the sensitivity analysis reported in Section 4.4. Its principal limitation --- that it cannot recover non-convex regions of the Pareto front --- is addressed in Section 5.
+Linear scalarisation was chosen for three reasons: it yields a single scalar directly usable as a genetic-algorithm fitness value; the weights are individually interpretable and can be elicited from clinicians in the units of each objective; and it permits the sensitivity analysis reported in Section~\ref{sec:sensitivity}. Its principal limitation --- that it cannot recover non-convex regions of the Pareto front --- is addressed in Section~\ref{sec:multiobj}.
 
 \textbf{Normalisation.} For reporting we map $f$ to $[1, 100]$ via a logistic transform $\sigma(f) = 1 + 99 \, / \, (1 + e^{-(f - \mu)/s})$. The centre $\mu$ and scale $s$ are calibrated against the empirical distribution of $f$ over all feasible regimens in the cohort ($\mu = 30$, $s = 8$; observed range $[-143.6, 57.7]$). We report raw $f$ alongside $\sigma(f)$ throughout, since the logistic transform saturates for the salvage subgroup and would otherwise compress genuinely distinct outcomes onto the same value.
 
-\subsection{Salvage subgroup}
+\subsection{Salvage subgroup}\label{sec:salvage-method}
 
 Patients harbouring multi-NRTI resistance complexes may have no available regimen reaching the standard mean-efficacy threshold $\tau = 0.75$. Declaring such patients untreatable is clinically incorrect: practice anchors on a high-genetic-barrier agent and accepts reduced NRTI activity, consistent with WHO third-line guidance favouring agents with minimal cross-resistance to those already used \cite{who2021consolidated}.
 
 We therefore define a salvage mode. When $\max_r \bar{E}(r) < \tau$, the feasible set is restricted to regimens anchored on a boosted protease inhibitor or integrase inhibitor, and the efficacy constraint is relaxed to $\tau_{\text{salv}} = 0.50$. Reduced efficacy is then penalised by the fitness function rather than excluded by the constraint. Salvage patients are flagged and reported as a distinct subgroup.
 
-\subsection{Search strategies}
+\subsection{Search strategies}\label{sec:search}
 
 We compare two strategies over an identical feasible set. Both are driven from the same candidate-generation routine, so the only difference between them is search behaviour.
 
@@ -188,11 +189,11 @@ We compare two strategies over an identical feasible set. Both are driven from t
 
 \textbf{Genetic algorithm.} Individuals are regimens. The population is initialised by uniform sampling from the feasible set; selection is tournament-based with elitism; crossover pools parental drugs and repairs the child back into the feasible set by maximal overlap; mutation resamples a feasible neighbour sharing at least two drugs with the incumbent. Constraining every operator to the feasible set guarantees the algorithm cannot emit a regimen that exhaustive search would reject --- a prerequisite for the comparison to be meaningful. Parameters: population 60, generations 100, tournament size 3, crossover rate 0.8, mutation rate 0.15, elitism 2, fixed seed.
 
-\subsection{Cohort}
+\subsection{Cohort}\label{sec:cohort}
 
 The cohort comprises 17 patient profiles: 15 synthetic and 2 encoded from published case reports. Synthetic profiles were generated to span clinically meaningful variation in resistance mutations, CD4 count, viral load, hepatic and renal function, comorbidities, and cost sensitivity.
 
-We state plainly that synthetic data is a limitation. Individual-level ART prescribing data was not obtainable for this study, and the synthetic cohort cannot support claims about real-world clinical outcomes. It is adequate for the purpose it serves here, which is characterising the structure and size of the search space and comparing search strategies over it --- quantities determined by the drug catalogue and the constraint structure, not by the empirical distribution of patients. Section 5 discusses what validation on real cohorts would be required before clinical claims could be made.
+We state plainly that synthetic data is a limitation. Individual-level ART prescribing data was not obtainable for this study, and the synthetic cohort cannot support claims about real-world clinical outcomes. It is adequate for the purpose it serves here, which is characterising the structure and size of the search space and comparing search strategies over it --- quantities determined by the drug catalogue and the constraint structure, not by the empirical distribution of patients. Section~\ref{sec:limitations} discusses what validation on real cohorts would be required before clinical claims could be made.
 
 \begin{table*}[t]
 \centering
@@ -210,9 +211,9 @@ Tier 3 --- tertiary centre & 20 & Tier 2 + RPV, EVG, BIC, maraviroc, ibalizumab,
 \end{tabular}
 \end{table*}
 
-\section{Results}
+\section{Results}\label{sec:results}
 
-\subsection{Search space characterisation}
+\subsection{Search space characterisation}\label{sec:space}
 
 Across the 17-patient cohort the feasible set contains 613 regimens in total, ranging from 2 to 130 per patient (median 30). Search-space size is driven primarily by formulary tier: Tier 1 patients have a median of 27 feasible regimens, Tier 2 a median of 40, Tier 3 a median of 80.
 
@@ -230,7 +231,7 @@ $$|\mathcal{R}| = \binom{n_{\text{NRTI}}}{2} \cdot m = O(n^2 m)$$
 
 This is polynomial, not exponential. Figure~\ref{fig:searchspace}(a) plots the growth: at the current catalogue of roughly 20 approved agents the space contains 165 regimens; at 100 agents it contains approximately 24,000; at 500 agents --- twenty-five times the present catalogue, and well beyond any credible projection --- approximately 3.07 million, which exhaustive search evaluates in under one minute on a single core.
 
-\subsection{Genetic algorithm versus exhaustive search}
+\subsection{Genetic algorithm versus exhaustive search}\label{sec:gavsex}
 
 The genetic algorithm recovered the exhaustive-search optimum for all 17 patients, and this held across three independent random seeds (1, 9, 42). No instance was found in which the metaheuristic located a better solution, which is expected: exhaustive search is optimal by construction.
 
@@ -248,25 +249,25 @@ Wall-clock time is the less useful comparison. On one core the genetic algorithm
 
 \textbf{We report this as a negative result.} For single-regimen ART selection at realistic catalogue sizes, a genetic algorithm offers no advantage over exhaustive search on either solution quality or computational cost. The search space is small enough that guaranteed-optimal enumeration is not merely feasible but strictly preferable.
 
-\subsection{Two failure modes recovered by correcting the comparison}
+\subsection{Three failure modes recovered by correcting the comparison}\label{sec:failures}
 
-Two implementation asymmetries, both of which inflated the apparent case for the metaheuristic, are worth reporting because they are easy to introduce and hard to detect from aggregate results.
+Three implementation defects, each of which inflated the apparent case for the metaheuristic, are worth reporting because they are easy to introduce and hard to detect from aggregate results.
 
 First, deterministic population initialisation. Our initial implementation constructed individuals by a greedy rule --- rank NRTIs by resistance-adjusted efficacy, take the top two, take the highest-efficacy integrase inhibitor. This returns an identical individual on every call, so the population began each run with zero diversity and could escape the greedy solution only through mutation. Before correction the algorithm returned the same regimen for 9 of 17 patients irrespective of profile and matched the optimum for only 1.
 
 Second, asymmetric constraint application. The metaheuristic honoured formulary access constraints while the exhaustive baseline did not, so the two searched different spaces; the baseline could reach drugs the metaheuristic was structurally forbidden from selecting. Any comparison drawn from that configuration is uninterpretable.
 
-A third arose from normalisation placement: the logistic transform of Section 3.4 saturates at both ends, so for the salvage subgroup every candidate mapped to the same reported value and the search loop had no gradient to follow. Selection must operate on raw fitness, with normalisation applied once at the reporting boundary.
+A third arose from normalisation placement: the logistic transform of Section~\ref{sec:fitness} saturates at both ends, so for the salvage subgroup every candidate mapped to the same reported value and the search loop had no gradient to follow. Selection must operate on raw fitness, with normalisation applied once at the reporting boundary.
 
 All three were corrected by routing candidate generation, mutation, and crossover repair through a single shared enumeration routine and moving normalisation outside the search loop. We report them because a comparison between an exact method and a metaheuristic is only meaningful when both operate over a provably identical feasible set, and this is easier to violate than it appears.
 
-\subsection{Salvage subgroup}
+\subsection{Salvage subgroup}\label{sec:salvage-result}
 
-Two patients (11.8\%) had no available regimen reaching the standard mean-efficacy threshold. Both harboured multi-NRTI resistance complexes: M184V + K65R + L74V (best achievable mean efficacy 0.623) and Q151M + M184V (0.666). Under the salvage protocol of Section 3.5 both received anchored regimens --- AZT + 3TC + DTG and TAF + 3TC + DTG respectively --- with substantially reduced raw fitness ($-55.1$ and $-143.6$ against a cohort median of $36.6$).
+Two patients (11.8\%) had no available regimen reaching the standard mean-efficacy threshold. Both harboured multi-NRTI resistance complexes: M184V + K65R + L74V (best achievable mean efficacy 0.623) and Q151M + M184V (0.666). Under the salvage protocol of Section~\ref{sec:salvage-method} both received anchored regimens --- AZT + 3TC + DTG and TAF + 3TC + DTG respectively --- with substantially reduced raw fitness ($-55.1$ and $-143.6$ against a cohort median of $36.6$).
 
 This subgroup is where sequencing decisions carry the greatest weight, since the choice of first-line agent directly determines what remains available after virologic failure. It is also where the single-regimen formulation is least adequate, as it cannot represent the forward cost of exhausting a drug class.
 
-\subsection{The genetic algorithm's search contributes nothing}
+\subsection{The genetic algorithm's search contributes nothing}\label{sec:initpop}
 
 Inspecting the convergence traces makes the mechanism explicit. For 14 of 17 patients the best regimen found across the entire run is already present in the \textbf{randomly initialised generation-1 population}; the reported improvement from generation 1 to generation 100 is exactly zero. The evolutionary operators contribute on three patients only (HIV-SY-005, HIV-SY-006 and R-SECOND-HIV-002), and there the optimum is reached by generation 3 at the latest --- within the first 180 of 6,000 evaluations.
 
@@ -282,7 +283,7 @@ This is predictable rather than accidental. With a population of 60 sampled unif
 
 The genetic algorithm is therefore not performing directed search on this problem. It is performing random sampling, and then spending a further 5,940 evaluations confirming what its first 60 draws already found. Reporting convergence curves without an exact baseline would show a rapid rise to a stable plateau --- a trace easily read as fast convergence, when the correct reading is that the search never began.
 
-\subsection{Sensitivity to objective weights}
+\subsection{Sensitivity to objective weights}\label{sec:sensitivity}
 
 Linear scalarisation is only defensible if the resulting recommendations are not hostage to the particular weights chosen. We perturbed each weight over $0.5\times$ to $2\times$ its nominal value, holding the others fixed, and recomputed the exhaustive optimum for every patient. Exhaustive search rather than the genetic algorithm was used so that observed variation is attributable to the objective and not to stochastic search. Figure~\ref{fig:sensitivity} reports the maximum proportion of patients whose recommended regimen changes.
 
@@ -298,33 +299,34 @@ Recommendations are \textbf{not robust to weighting}, and the pattern is asymmet
 
 The direction matters. Raising the cost weight above its nominal value changes nothing, while halving it changes 41\% of recommendations; conversely, lowering the side-effect weight changes nothing, while doubling it changes 59\%. The nominal weights therefore sit at a boundary at which the cost term already dominates: under sourced procurement prices the cheapest feasible regimens already win, so increasing the penalty on cost cannot change the ranking, and only relaxing it allows the other objectives to express a preference.
 
-\textbf{Two of the five objective terms do no work at all.} Efficacy changes no recommendation anywhere in the $0.5\times$--$2\times$ range, and the guideline-compliance bonus changes none either, for the structural reason given below. Efficacy is inert here for a different and more contingent reason: within each patient's feasible set the surviving candidates have already passed the efficacy threshold of Section 3.2, and their residual differences are small relative to the cost and side-effect spreads. A scalarised objective with five terms is, in this instance, effectively a three-term objective.
+\textbf{Two of the five objective terms do no work at all.} Efficacy changes no recommendation anywhere in the $0.5\times$--$2\times$ range, and the guideline-compliance bonus changes none either, for the structural reason given below. Efficacy is inert here for a different and more contingent reason: within each patient's feasible set the surviving candidates have already passed the efficacy threshold of Section~\ref{sec:salvage-method}, and their residual differences are small relative to the cost and side-effect spreads. A scalarised objective with five terms is, in this instance, effectively a three-term objective.
 
 This has a direct implication for deployment. A regimen recommendation from this system is a statement about the weights as much as about the patient, and those weights encode a health-economic judgement --- how much toxicity is worth how many dollars --- that properly belongs to a clinician or a national programme, not to the algorithm's authors. We report the sensitivity rather than tuning it away.
 
-\textbf{The guideline-compliance bonus is inert.} Perturbing it across the full sweep range changed no recommendation for any patient. This follows from the constraint structure: the candidate enumeration of Section 3.2 admits only WHO-compliant regimens, so the bonus is applied uniformly across the entire feasible set, shifts every fitness value equally, and cannot alter the ranking. It is a term in the objective that does no work. We note this because a bonus term that duplicates a hard constraint is easy to introduce and produces no visible symptom --- the fitness values it inflates look entirely reasonable.
+\textbf{The guideline-compliance bonus is inert.} Perturbing it across the full sweep range changed no recommendation for any patient. This follows from the constraint structure: the candidate enumeration of Section~\ref{sec:constraints} admits only WHO-compliant regimens, so the bonus is applied uniformly across the entire feasible set, shifts every fitness value equally, and cannot alter the ranking. It is a term in the objective that does no work. We note this because a bonus term that duplicates a hard constraint is easy to introduce and produces no visible symptom --- the fitness values it inflates look entirely reasonable.
 
 The dominance of the cost term also explains two patients (HIV-SY-007, HIV-SY-011) whose recommendations score near the reporting floor despite meeting the efficacy threshold: the cost penalty, scaled by their reported cost sensitivity, outweighs their attainable efficacy.
 
-\subsection{Recommendations under sourced versus unsourced cost data}
+\subsection{Recommendations under sourced versus unsourced cost data}\label{sec:costs}
 
 The drug table inherited from the original implementation carried monthly costs with no recorded provenance. Checked against published procurement figures they were roughly an order of magnitude high for the setting modelled here: the table priced TDF + 3TC + DTG at US\$546 per person-year, against a Global Fund Pooled Procurement Mechanism reference of under US\$45 for the same fixed-dose combination \cite{globalfund2023}. Dolutegravir was the most distorted entry.
 
-We rebuilt the cost table from published sources, annotating every figure with its origin and year and marking as estimates the seven agents for which no published low- and middle-income generic price was located (Table 1b). The effect on recommendations is not marginal.
+We rebuilt the cost table from published sources, annotating every figure with its origin and year and marking as estimates the seven agents for which no published low- and middle-income generic price was located; the full table, with per-figure sources, is in the repository. The effect on recommendations is not marginal.
 
 \begin{table}[t]
 \centering
-\caption{Effect of sourced versus unsourced cost data on recommendations.}
+\caption{Effect of sourced versus unsourced cost data on recommendations (patients out of 17).}
 \label{tab:2}
-\begin{tabular}{lrr}
+\small
+\begin{tabular}{@{}p{0.50\columnwidth}rr@{}}
 \toprule
-\textbf{} & \textbf{unsourced costs} & \textbf{sourced costs} \\
+ & \textbf{Unsourced} & \textbf{Sourced} \\
 \midrule
 DTG-anchored regimens & 3 / 17 & \textbf{17 / 17} \\
 EFV-anchored regimens & 5 / 17 & 0 / 17 \\
 ABC appearances & 14 / 17 & 7 / 17 \\
 TDF appearances & 1 / 17 & 7 / 17 \\
-WHO-preferred structure (tenofovir + XTC + DTG) & 0 / 17 & 7 / 17 \\
+WHO-preferred structure (tenofovir~+ XTC~+ DTG) & 0 / 17 & 7 / 17 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -333,7 +335,7 @@ Under the original figures the optimiser systematically preferred efavirenz-anch
 
 We report this because the direction of the error is instructive. An unsourced parameter did not produce noise; it produced a coherent, defensible-looking, and completely wrong clinical conclusion, in a model whose search and constraint logic were by then verified by an exact baseline and a test suite. Correctness of the optimiser is not correctness of the recommendation.
 
-\subsection{Robustness to trial-consistent parameter values}
+\subsection{Robustness to trial-consistent parameter values}\label{sec:robustness}
 
 Having found the cost column unsourced, we audited the remaining parameter families against the clinical literature. Per-drug efficacy has no direct empirical referent --- virologic suppression is measured for regimens, not for individual agents, since no agent is given alone --- so that column cannot be sourced directly at any level of effort. What can be checked is whether the per-drug values reproduce the relative orderings that trials do establish.
 
@@ -341,15 +343,15 @@ They do not, in one respect that matters. The inherited table carries dolutegrav
 
 Re-running the cohort with values reflecting that non-inferiority (efficacy 0.91 against 0.90, toxicity 0.28 against 0.33) changes the recommendation for 3 of 17 patients, all from a dolutegravir anchor to an efavirenz anchor. Dolutegravir anchors 14 of 17 recommendations rather than 17 of 17.
 
-The direction of the Section 4.7 finding therefore survives --- sourced costs move the model decisively toward guideline-concordant recommendations --- but its magnitude does not. We report both figures rather than the more favourable one. \texttt{run\_robustness.py} reproduces this analysis.
+The direction of the Section~\ref{sec:costs} finding therefore survives --- sourced costs move the model decisively toward guideline-concordant recommendations --- but its magnitude does not. We report both figures rather than the more favourable one. \texttt{run\_\allowbreak{}robustness.py} reproduces this analysis.
 
 \textbf{A caveat on fixed-dose combinations.} Antiretrovirals are largely procured as fixed-dose combinations priced below the sum of their components. Our model costs regimens additively from per-drug prices, which overestimates the procurement cost of any regimen available as an FDC --- disproportionately the WHO-preferred ones, since those are the combinations manufactured as FDCs. For the three TLD components we allocate the published FDC ceiling across the components rather than using independent per-drug prices, and mark this as an allocation. A regimen-level cost model is the correct fix.
 
 \textbf{Pharmacogenetic prerequisite.} Abacavir hypersensitivity is strongly associated with the HLA-B*5701 allele; screening before initiation is recommended and abacavir is contraindicated in allele-positive patients \cite{dhhs_hlab5701}. We implement this as a hard exclusion when allele status is recorded and otherwise report it as a pre-prescription screening requirement, which it is for the abacavir-containing recommendations in the cohort. No profile in this cohort records allele status, so the exclusion never binds here; the requirement is surfaced rather than enforced.
 
-\section{Discussion}
+\section{Discussion}\label{sec:discussion}
 
-\subsection{When is a metaheuristic warranted?}
+\subsection{When is a metaheuristic warranted?}\label{sec:warranted}
 
 Our results delimit the conditions under which evolutionary search is appropriate for antiretroviral optimisation. A genetic algorithm earns its cost when at least one of three conditions holds: the search space grows super-polynomially; fitness evaluation is expensive, as with simulation-based objectives; or a set of trade-off solutions is required rather than a single scalarised optimum.
 
@@ -357,35 +359,35 @@ Single-regimen selection under a fixed three-slot structure satisfies none of th
 
 This is not an argument against metaheuristics in HIV therapy optimisation. It is an argument that the problem must be formulated at a scale where they are warranted, and that reporting a metaheuristic's success on a tractable instance without an exact baseline risks presenting as an achievement what exhaustive enumeration would deliver faster and with a guarantee.
 
-\subsection{Sequencing as the appropriate formulation}
+\subsection{Sequencing as the appropriate formulation}\label{sec:sequencing}
 
 HIV therapy is not a single decision. Patients begin on first-line therapy, experience virologic failure, accumulate resistance, and switch --- and the first-line choice constrains what remains viable at second and third line. This is a sequential decision problem under evolving constraints.
 
-Formulated as a sequence of $L$ lines drawn from a feasible set of size $|\mathcal{R}|$, and accounting for resistance accumulation between lines, the space is $O(|\mathcal{R}|^L)$. Figure~\ref{fig:searchspace}(b) plots the growth for $|\mathcal{R}| = 165$: 27,225 sequences at $L = 2$, $4.49 \times 10^6$ at $L = 3$, $7.41 \times 10^8$ at $L = 4$. Exhaustive search becomes infeasible between the third and fourth line --- precisely the horizon over which HIV therapy is actually planned, and precisely the regime in which the salvage subgroup of Section 4.4 lives.
+Formulated as a sequence of $L$ lines drawn from a feasible set of size $|\mathcal{R}|$, and accounting for resistance accumulation between lines, the space is $O(|\mathcal{R}|^L)$. Figure~\ref{fig:searchspace}(b) plots the growth for $|\mathcal{R}| = 165$: 27,225 sequences at $L = 2$, $4.49 \times 10^6$ at $L = 3$, $7.41 \times 10^8$ at $L = 4$. Exhaustive search becomes infeasible between the third and fourth line --- precisely the horizon over which HIV therapy is actually planned, and precisely the regime in which the salvage subgroup of Section~\ref{sec:salvage-result} lives.
 
 This is the formulation under which the present work should be extended, and it requires modelling components the current implementation lacks: virologic failure probability as a function of regimen and adherence, resistance mutation accumulation conditioned on the failing regimen, and cross-resistance between classes.
 
-\subsection{Multi-objective alternative}
+\subsection{Multi-objective alternative}\label{sec:multiobj}
 
-A second direction retains the single-regimen formulation but replaces linear scalarisation with a Pareto-based method such as NSDA-II. The contribution would then be the trade-off surface itself --- presenting a clinician with the efficacy / toxicity / cost frontier rather than one point determined by weights fixed in advance. This is a weaker contribution than the sequencing reformulation but requires substantially less additional modelling, and it addresses the non-convexity limitation noted in Section 3.4.
+A second direction retains the single-regimen formulation but replaces linear scalarisation with a Pareto-based method such as NSDA-II. The contribution would then be the trade-off surface itself --- presenting a clinician with the efficacy / toxicity / cost frontier rather than one point determined by weights fixed in advance. This is a weaker contribution than the sequencing reformulation but requires substantially less additional modelling, and it addresses the non-convexity limitation noted in Section~\ref{sec:fitness}.
 
-\subsection{Limitations}
+\subsection{Limitations}\label{sec:limitations}
 
-\textbf{Synthetic cohort.} Fifteen of seventeen profiles are synthetic. No claim about real-world clinical outcomes is supported by this work. The search-space characterisation in Section 4.1 is determined by catalogue and constraint structure and does not depend on the patient distribution; the results in Sections 4.2--4.4 do, and require replication on a real cohort.
+\textbf{Synthetic cohort.} Fifteen of seventeen profiles are synthetic. No claim about real-world clinical outcomes is supported by this work. The search-space characterisation in Section~\ref{sec:space} is determined by catalogue and constraint structure and does not depend on the patient distribution; the results in Sections~\ref{sec:gavsex}--\ref{sec:robustness} do, and require replication on a real cohort.
 
 \textbf{Tier proportions.} The 65 / 25 / 10 tier distribution is an assumption, not an observation. Tier is reported as a covariate so its influence can be assessed.
 
 \textbf{Pharmacogenetic constraints.} Abacavir carries an HLA-B*5701 prerequisite, implemented as a hard exclusion when allele status is recorded positive and otherwise reported as a pre-prescription screening requirement --- which it is for 14 of 17 recommendations. No cohort profile records allele status, so the exclusion never binds here; the requirement is surfaced rather than enforced. Real deployment would need the screening result before dispensing.
 
-\textbf{Unsourced model parameters.} Per-drug efficacy, toxicity, organ-impact and side-effect values carry no recorded source. The resistance model is structurally aligned to the Stanford HIVdb algorithm \cite{liu2006}: penalties are summed across mutations and mapped through the published five-level banding (0--9 susceptible, 10--14 potential low-level, 15--29 low-level, 30--59 intermediate, $\geq$60 high-level), with genotypic susceptibility scores of 1.0, 0.75, 0.5, 0.25 and 0. The banding is verified; the per-mutation penalties are not. They are derived from the project's legacy fractional reductions rather than taken from the published Stanford tables, and are marked as such in \texttt{config/resistance\_scoring.py}. Checked against the published version-7.0 class-maximum scores, two derived penalties exceed what the published values permit (E138K against rilpivirine, and L74V against abacavir, both derived at 45 against a published class maximum of 30). Exact per-drug penalties for the current algorithm version (HIVdb 10.2) are available as machine-readable ASI2 XML from Stanford's \texttt{hivfacts} repository and should replace the derived values before any clinical claim is made. Note also that per-drug efficacy has no direct empirical referent --- virologic suppression is measured for regimens, not individual agents --- so that column is a modelling abstraction rather than a measurable quantity. Seven agents have no published low- and middle-income generic price and carry estimates. Given Section 4.7, no conclusion resting on the specific magnitude of these parameters should be treated as established. \texttt{check\_provenance.py} reports the current status of every parameter.
+\textbf{Unsourced model parameters.} Per-drug efficacy, toxicity, organ-impact and side-effect values carry no recorded source. The resistance model is structurally aligned to the Stanford HIVdb algorithm \cite{liu2006}: penalties are summed across mutations and mapped through the published five-level banding (0--9 susceptible, 10--14 potential low-level, 15--29 low-level, 30--59 intermediate, $\geq$60 high-level), with genotypic susceptibility scores of 1.0, 0.75, 0.5, 0.25 and 0. The banding is verified; the per-mutation penalties are not. They are derived from the project's legacy fractional reductions rather than taken from the published Stanford tables, and are marked as such in \texttt{config/resistance\_\allowbreak{}scoring.py}. Checked against the published version-7.0 class-maximum scores, two derived penalties exceed what the published values permit (E138K against rilpivirine, and L74V against abacavir, both derived at 45 against a published class maximum of 30). Exact per-drug penalties for the current algorithm version (HIVdb 10.2) are available as machine-readable ASI2 XML from Stanford's \texttt{hivfacts} repository and should replace the derived values before any clinical claim is made. Note also that per-drug efficacy has no direct empirical referent --- virologic suppression is measured for regimens, not individual agents --- so that column is a modelling abstraction rather than a measurable quantity. Seven agents have no published low- and middle-income generic price and carry estimates. Given Section~\ref{sec:costs}, no conclusion resting on the specific magnitude of these parameters should be treated as established. \texttt{check\_\allowbreak{}provenance.py} reports the current status of every parameter.
 
-\textbf{Static resistance model.} Resistance is treated as a fixed patient attribute. Real resistance evolves under selective pressure from the administered regimen --- the central mechanism the sequencing reformulation of Section 5.2 would capture.
+\textbf{Static resistance model.} Resistance is treated as a fixed patient attribute. Real resistance evolves under selective pressure from the administered regimen --- the central mechanism the sequencing reformulation of Section~\ref{sec:sequencing} would capture.
 
-\textbf{Weight elicitation.} Section 4.6 shows recommendations shift substantially under modest reweighting, and the nominal weights were not elicited from clinicians. Any deployment would require weights set by the responsible clinical authority, with the sensitivity reported alongside the recommendation.
+\textbf{Weight elicitation.} Section~\ref{sec:sensitivity} shows recommendations shift substantially under modest reweighting, and the nominal weights were not elicited from clinicians. Any deployment would require weights set by the responsible clinical authority, with the sensitivity reported alongside the recommendation.
 
-\textbf{Single decision point.} The model recommends one regimen. It does not represent a fallback, a switch on failure, or any later line --- the limitation the sequencing reformulation of Section 5.2 addresses.
+\textbf{Single decision point.} The model recommends one regimen. It does not represent a fallback, a switch on failure, or any later line --- the limitation the sequencing reformulation of Section~\ref{sec:sequencing} addresses.
 
-\section{Ethics, safety and governance}
+\section{Ethics, safety and governance}\label{sec:ethics}
 
 A regimen optimiser is a clinical decision support system, and the question of what happens when it is wrong is not separable from the question of whether it works. This section sets out what the system does to constrain unsafe output, what it cannot do, and what would be required before any deployment.
 
@@ -393,7 +395,7 @@ A regimen optimiser is a clinical decision support system, and the question of w
 
 No identifiable patient data was used in this study. Fifteen of seventeen profiles are synthetic, generated to span clinically meaningful variation in resistance, organ function and comorbidity. The remaining two are encoded from case descriptions already published in the peer-reviewed literature, and contain no information that could identify an individual.
 
-Consequently no ethics committee approval, informed consent process or data-protection impact assessment was required for the work as conducted. We state this plainly because it is also a limitation: a study that requires no governance is a study that has not touched real patients, and the results in Sections 4.2--4.7 are correspondingly untested against real-world variation.
+Consequently no ethics committee approval, informed consent process or data-protection impact assessment was required for the work as conducted. We state this plainly because it is also a limitation: a study that requires no governance is a study that has not touched real patients, and the results in Sections~\ref{sec:gavsex}--\ref{sec:robustness} are correspondingly untested against real-world variation.
 
 Any extension to real cohorts changes this entirely. It would require ethics approval, a lawful basis for processing under the applicable regime --- GDPR Article 9 for special-category health data in European jurisdictions, HIPAA in the United States, and the relevant national framework elsewhere --- a data protection impact assessment, and a data-sharing agreement with the holding institution. Resistance genotypes are among the most sensitive categories of health data, being simultaneously clinical information and, through the viral sequence's linkage to transmission networks, potentially disclosive of relationships. They warrant handling accordingly.
 
@@ -401,19 +403,19 @@ Any extension to real cohorts changes this entirely. It would require ethics app
 
 The question of how a search procedure is prevented from returning a harmful combination has a specific answer in this architecture: harmful combinations are never generated, rather than generated and then filtered.
 
-All candidate regimens are produced by a single enumeration routine (\texttt{enumerate\_valid\_regimens}) that applies, before any fitness is computed:
+All candidate regimens are produced by a single enumeration routine (\texttt{enumerate\_\allowbreak{}valid\_\allowbreak{}regimens}) that applies, before any fitness is computed:
 
 \begin{enumerate}
 \item \textbf{Structural validity} --- two NRTIs plus one third agent, per WHO guidance.
 \item \textbf{Patient-specific contraindication} --- drugs excluded by comorbidity, hepatic or renal function, pregnancy status or documented allergy.
-\item \textbf{Backbone non-redundancy} --- clinically redundant NRTI pairs excluded (Section 3.2).
+\item \textbf{Backbone non-redundancy} --- clinically redundant NRTI pairs excluded (Section~\ref{sec:constraints}).
 \item \textbf{Pharmacogenetic prerequisite} --- HLA-B*5701-positive patients cannot receive abacavir; where status is unknown, the requirement is reported rather than silently ignored.
 \item \textbf{Formulary availability} --- drugs outside the patient's formulary tier.
 \end{enumerate}
 
-The genetic algorithm's mutation and crossover operators are constrained to this same enumerated set and repair any offspring back into it, so the search cannot reach an invalid regimen even transiently. This is asserted by test --- \texttt{test\_ga\_output\_is\_always\_inside\_the\_enumerated\_space} --- rather than assumed.
+The genetic algorithm's mutation and crossover operators are constrained to this same enumerated set and repair any offspring back into it, so the search cannot reach an invalid regimen even transiently. This is asserted by test --- \texttt{test\_\allowbreak{}ga\_\allowbreak{}output\_\allowbreak{}is\_\allowbreak{}always\_\allowbreak{}inside\_\allowbreak{}the\_\allowbreak{}enumerated\_\allowbreak{}space} --- rather than assumed.
 
-The enumeration itself is verified against an independently written exhaustive triple loop for every patient (\texttt{test\_enumeration\_matches\_independent\_brute\_force}), so the claim that the constraint layer is complete does not rest on inspection of the code that implements it. The full suite is fourteen tests; all pass, and a single \texttt{verify.py} entry point reproduces every number reported in this paper.
+The enumeration itself is verified against an independently written exhaustive triple loop for every patient (\texttt{test\_\allowbreak{}enumeration\_\allowbreak{}matches\_\allowbreak{}independent\_\allowbreak{}brute\_\allowbreak{}force}), so the claim that the constraint layer is complete does not rest on inspection of the code that implements it. The full suite is fourteen tests; all pass, and a single \texttt{verify.py} entry point reproduces every number reported in this paper.
 
 We emphasise what this does \textit{not} establish. The constraint layer is only as good as the clinical rules encoded in it, and those rules are our transcription of published guidance, not a validated implementation of it. A missing contraindication is invisible to a test suite that checks the rules it was given.
 
@@ -421,17 +423,17 @@ We emphasise what this does \textit{not} establish. The constraint layer is only
 
 Three residual risks are worth naming explicitly.
 
-\textbf{Parameter provenance.} As reported in Section 4.7, an unsourced cost table produced a coherent, plausible and entirely wrong clinical conclusion in a system whose search logic was by then verified by both an exact baseline and a passing test suite. Correctness of the optimiser is not correctness of the recommendation. Costs are now sourced; efficacy, toxicity and the resistance penalties are not, and two derived resistance penalties exceed published class maxima (Section 5.4). \texttt{check\_provenance.py} reports the status of every parameter.
+\textbf{Parameter provenance.} As reported in Section~\ref{sec:costs}, an unsourced cost table produced a coherent, plausible and entirely wrong clinical conclusion in a system whose search logic was by then verified by both an exact baseline and a passing test suite. Correctness of the optimiser is not correctness of the recommendation. Costs are now sourced; efficacy, toxicity and the resistance penalties are not, and two derived resistance penalties exceed published class maxima (Section~\ref{sec:limitations}). \texttt{check\_\allowbreak{}provenance.py} reports the status of every parameter.
 
-\textbf{Weight dependence.} Section 4.6 shows that recommendations change for up to 59\% of the cohort under modest reweighting. The weights encode a health-economic judgement --- how much toxicity is worth how much cost --- that properly belongs to a clinician or a national programme, not to the authors of an algorithm. Any deployment should elicit weights from the responsible clinical authority and report the sensitivity alongside each recommendation.
+\textbf{Weight dependence.} Section~\ref{sec:sensitivity} shows that recommendations change for up to 59\% of the cohort under modest reweighting. The weights encode a health-economic judgement --- how much toxicity is worth how much cost --- that properly belongs to a clinician or a national programme, not to the authors of an algorithm. Any deployment should elicit weights from the responsible clinical authority and report the sensitivity alongside each recommendation.
 
-\textbf{Single decision point.} The model recommends one regimen and does not represent switching on virologic failure or the forward cost of exhausting a drug class (Section 5.2).
+\textbf{Single decision point.} The model recommends one regimen and does not represent switching on virologic failure or the forward cost of exhausting a drug class (Section~\ref{sec:sequencing}).
 
 \subsection{Human oversight and liability}
 
 We take the position that a system of this kind should not operate autonomously, and our implementation does not support autonomous operation: it produces a ranked recommendation with its constituent objective terms, constraint justifications and screening prerequisites exposed, for a clinician to accept, reject or modify. Prescribing authority and clinical responsibility remain with the treating clinician throughout. The system's output is an input to a decision, not a decision.
 
-This is a design commitment rather than a claim of validation. We have not conducted a human-factors study, and the well-documented risk of automation bias --- that a displayed recommendation anchors a clinician's judgement even when wrong --- applies here and is not mitigated by the interface as built. Given Section 4.7, where a plausible-looking recommendation was wrong for a reason invisible at the point of use, this risk should be taken seriously rather than assumed away.
+This is a design commitment rather than a claim of validation. We have not conducted a human-factors study, and the well-documented risk of automation bias --- that a displayed recommendation anchors a clinician's judgement even when wrong --- applies here and is not mitigated by the interface as built. Given Section~\ref{sec:costs}, where a plausible-looking recommendation was wrong for a reason invisible at the point of use, this risk should be taken seriously rather than assumed away.
 
 \subsection{Regulatory pathway}
 
@@ -439,13 +441,13 @@ Software intended to inform clinical treatment selection falls within Software a
 
 We make no claim that the present work constitutes a regulated device or is ready for clinical use. It is a methodological study on largely synthetic data. A deployment pathway would require, at minimum: sourced parameters throughout; prospective validation against real cohorts with clinician-adjudicated outcomes; a quality management system; and clinical evaluation under the applicable framework. We state this to delimit the claim, not to gesture at future work.
 
-\section{Declarations}
+\section{Declarations}\label{sec:declarations}
 
 \textbf{Ethics approval and consent to participate.} Not applicable. This study used synthetic patient profiles and two profiles encoded from previously published, de-identified case descriptions. No human participants, human data or human tissue were involved.
 
 \textbf{Consent for publication.} Not applicable.
 
-\textbf{Availability of data and materials.} All code, data and analysis scripts are available at https://github.com/jaudat150/art-regimen-selection-with-GA and archived at https://doi.org/10.5281/zenodo.22809521. Every figure, table and numerical result in this paper is reproduced by \texttt{python verify.py}.
+\textbf{Availability of data and materials.} All code, data and analysis scripts are available at \url{https://github.com/jaudat150/art-regimen-selection-with-GA} and archived at \url{https://doi.org/10.5281/zenodo.22809521}. Every figure, table and numerical result in this paper is reproduced by \texttt{python verify.py}.
 
 \textbf{Competing interests.} The authors declare that they have no competing interests.
 

@@ -87,7 +87,7 @@ hepatic or renal impairment.
 Linear scalarisation was chosen for three reasons: it yields a single scalar
 directly usable as a genetic-algorithm fitness value; the weights are
 individually interpretable and can be elicited from clinicians in the units of
-each objective; and it permits the sensitivity analysis reported in Section 4.4.
+each objective; and it permits the sensitivity analysis reported in Section 4.6.
 Its principal limitation — that it cannot recover non-convex regions of the
 Pareto front — is addressed in Section 5.
 

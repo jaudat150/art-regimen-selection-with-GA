@@ -49,9 +49,9 @@ exhaustive search on either solution quality or computational cost. The search
 space is small enough that guaranteed-optimal enumeration is not merely feasible
 but strictly preferable.
 
-### 4.3 Two failure modes recovered by correcting the comparison
+### 4.3 Three failure modes recovered by correcting the comparison
 
-Two implementation asymmetries, both of which inflated the apparent case for the
+Three implementation defects, each of which inflated the apparent case for the
 metaheuristic, are worth reporting because they are easy to introduce and hard to
 detect from aggregate results.
 
@@ -147,7 +147,7 @@ recommendation anywhere in the $0.5\times$–$2\times$ range, and the
 guideline-compliance bonus changes none either, for the structural reason given
 below. Efficacy is inert here for a different and more contingent reason: within
 each patient's feasible set the surviving candidates have already passed the
-efficacy threshold of Section 3.2, and their residual differences are small
+efficacy threshold of Section 3.5, and their residual differences are small
 relative to the cost and side-effect spreads. A scalarised objective with five
 terms is, in this instance, effectively a three-term objective.
 
@@ -182,7 +182,8 @@ combination \cite{globalfund2023}. Dolutegravir was the most distorted entry.
 
 We rebuilt the cost table from published sources, annotating every figure with
 its origin and year and marking as estimates the seven agents for which no
-published low- and middle-income generic price was located (Table 1b). The
+published low- and middle-income generic price was located; the full table, with
+per-figure sources, is in the repository. The
 effect on recommendations is not marginal.
 
 | | unsourced costs | sourced costs |

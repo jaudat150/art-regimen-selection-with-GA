@@ -533,3 +533,35 @@ speed comparison.
 Added as a paragraph opening the cost comparison in Section 2.4, with an
 acknowledgement. This is the first change to the paper that came from outside the
 project rather than from its own audits.
+
+
+# Round 15 — layout bugs that had been there since v1, and two wrong references
+
+An audit of the v4 draft PDF found that Table II overflowed into the adjacent
+column, printing its "sourced costs" values on top of the body text, and that two
+long test names and one bibliography URL ran off the page.
+
+**These had been present in every published version.** When the manuscript was
+first compiled, the build reported five overfull boxes, and they were dismissed as
+cosmetic without the pages being looked at. The warnings were these defects.
+
+Fixing them turned up worse problems in the same pass:
+
+- **Two cross-references pointed at the wrong section.** The sensitivity analysis
+  was cited as Section 4.4, which is the salvage subgroup; it is 4.6. The
+  efficacy threshold was cited as Section 3.2, the constraints subsection; the
+  threshold is defined in 3.5. Both dated from an earlier section structure.
+- **Every section reference was hardcoded** — 25 of them — in markdown numbering
+  ("Section 4.7") that does not match IEEE's rendered numbering ("IV-G"). All now
+  use `\label`/`\ref`, so numbering cannot drift from the sections again.
+- **"Two failure modes"** headed a subsection that describes three.
+- **"Table 1b"** was cited but does not exist in the paper; the provenance table
+  lives in the repository.
+
+Also: Table II's label column now wraps; `\texttt` identifiers break at
+underscores; `xurl` lets bibliography URLs break; the data-availability URLs are
+wrapped in `\url`; the regimen equation's spacing is tightened.
+
+The build now reports **zero** overfull boxes, and all eleven pages were checked
+visually rather than inferred from the log. The markdown sections carry the same
+corrections.
