@@ -110,6 +110,8 @@ Across this literature, three things are consistently reported: convergence beha
 
 We state this as an observation about evaluation practice, not a criticism of the studies. In the simulation-coupled formulations above it is a defensible omission: when a single fitness evaluation requires a lengthy agent-based or cellular-automata simulation, exhaustive enumeration is plainly infeasible and a baseline nobody could run tells a reader little. \textbf{The expensive fitness function is precisely the condition under which a metaheuristic is warranted, and prior work operated squarely within it.}
 
+The difference is one of kind before it is one of cost. A C-ImmSim evaluation is a stochastic mechanistic simulation of an immune response with no closed form, whose variability has to be averaged over replicates --- which is why Castiglione et al. evaluated each candidate schedule across 16 virtual patients. Our objective is a deterministic score over a discrete, fully enumerable set. The evaluation-time ratio follows from that difference and not from any advantage of implementation, and it should not be read as a speed comparison between methods: exhaustive search applied to a simulation-based objective of the same kind would be as infeasible there as it is tractable here.
+
 The gap is quantifiable on both axes. A single C-ImmSim evaluation took approximately 30 minutes \cite{castiglione2007} and a single ODE integration in Neri et al. approximately 0.2 seconds \cite{neri2007tcbb}; a single evaluation of our objective takes approximately $1.3 \times 10^{-5}$ seconds. Where Castiglione et al. required roughly 15,000 CPU-hours on a 128-machine cluster for one optimisation, our entire 17-patient exhaustive search completes in 8 milliseconds on one core.
 
 The search spaces differ correspondingly. Neri et al. report approximately $7.7 \times 10^{318}$ candidate schedules; our feasible set contains 613 regimens across the whole cohort. Both conclusions are correct for their own formulation, and the contrast is the point: the case for a metaheuristic is a property of the problem instance, not of the application domain.
@@ -450,6 +452,8 @@ We make no claim that the present work constitutes a regulated device or is read
 \textbf{Funding.} This research received no specific grant from any funding agency in the public, commercial or not-for-profit sectors.
 
 \textbf{Authors' contributions.} JFA and OAK contributed to the design and implementation of the optimisation framework and to the experimental work throughout. OAK led the software architecture and code organisation. JFA drafted the manuscript. YM supervised the work and reviewed the manuscript. All authors read and approved the final manuscript.
+
+\textbf{Acknowledgements.} We thank Filippo Castiglione for helpful comments on the characterisation of simulation-coupled prior work in Section~II-D.
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}

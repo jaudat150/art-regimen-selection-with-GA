@@ -152,3 +152,6 @@ implementation of the optimisation framework and to the experimental work
 throughout. OAK led the software architecture and code organisation. JFA drafted
 the manuscript. YM supervised the work and reviewed the manuscript. All authors
 read and approved the final manuscript.
+
+**Acknowledgements.** We thank Filippo Castiglione for helpful comments on the
+characterisation of simulation-coupled prior work in Section 2.4.

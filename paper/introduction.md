@@ -195,6 +195,16 @@ baseline nobody could run tells a reader little. **The expensive fitness functio
 is precisely the condition under which a metaheuristic is warranted, and prior
 work operated squarely within it.**
 
+The difference is one of kind before it is one of cost. A C-ImmSim evaluation is
+a stochastic mechanistic simulation of an immune response with no closed form,
+whose variability has to be averaged over replicates — which is why Castiglione
+et al. evaluated each candidate schedule across 16 virtual patients. Our
+objective is a deterministic score over a discrete, fully enumerable set. The
+evaluation-time ratio follows from that difference and not from any advantage of
+implementation, and it should not be read as a speed comparison between methods:
+exhaustive search applied to a simulation-based objective of the same kind would
+be as infeasible there as it is tractable here.
+
 The gap is quantifiable on both axes. A single C-ImmSim evaluation took
 approximately 30 minutes \cite{castiglione2007} and a single ODE integration in
 Neri et al. approximately 0.2 seconds \cite{neri2007tcbb}; a single evaluation of

@@ -514,3 +514,22 @@ deposited. Changed in `README.md`, `CITATION.cff` and `paper/README.md`.
 
 The code archive was already correct: `10.5281/zenodo.22809521` is a concept DOI
 and resolves to v1.1.
+
+
+# Round 14 — first outside review
+
+Filippo Castiglione, first author of the 2007 C-ImmSim study that Section 2.4 is
+built against, read the preprint and replied. He agreed the characterisation of
+his work was fair and endorsed the central distinction — that removing the
+expensive simulation removes the justification for a metaheuristic.
+
+He suggested one improvement: keep the two objectives visibly distinct *in kind*,
+not only in cost. His was a stochastic mechanistic simulation with no closed form,
+requiring replicates; ours is a deterministic score over an enumerable set. The
+evaluation-time ratio follows from that difference rather than from
+implementation efficiency, and saying so stops a reader mistaking the paper for a
+speed comparison.
+
+Added as a paragraph opening the cost comparison in Section 2.4, with an
+acknowledgement. This is the first change to the paper that came from outside the
+project rather than from its own audits.
